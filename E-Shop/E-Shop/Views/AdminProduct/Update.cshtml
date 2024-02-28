@@ -1,0 +1,80 @@
+﻿@model EntityLayer.Entities.Product
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data">
+
+    @Html.AntiForgeryToken()
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label>Ad</label>
+                    <input type="text" class="form-control" name="Name" value="@Model.Name" />
+
+                </div>
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    <input type="text" class="form-control" name="Description" value="@Model.Description" />
+
+                </div>
+                <div class="form-group">
+                    <label>Önceki Resim</label>
+                    <img src="~/Content/Image/@Model.Image" width="70" height="70"/>
+                
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Image, "Resim", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <input type="file" class="form-control" name="File" />
+                </div>
+                <div class="form-group">
+                    <label>Fiyat</label>
+                    <input type="text" class="form-control" name="Price" value="@Model.Price" />
+
+                </div>
+                <div class="form-group">
+                    <label>Stok</label>
+                    <input type="text" class="form-control" name="Stock" value="@Model.Stock" />
+
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Popular, "Popüler", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    @Html.EditorFor(x => x.Popular)
+
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.IsApproved, "Onay", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    @Html.EditorFor(x => x.IsApproved)
+
+
+                </div>
+                <div class="form-group">
+                    <label>Kategori</label>
+                    @Html.DropDownListFor(x => x.CategoryId, (SelectList)ViewBag.ktgr, new { @class = "form-control" })
+                </div>
+                <button class="btn btn-primary" type="submit">Güncelle</button>
+
+                <a href="/AdminProduct/Index/" class="btn btn-success" style="margin-left:12px;">Ürün Listesi</a>
+
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+
